@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "Meow.Shared.Infrastructure": "1.0.0-*"
+  },
+  "frameworks": {
+    "net462": {
+      "dependencies": {
+        "Meow.Shared.DataAccess": {
+          "target": "project"
+        }
+      }
+    }
+  },
+  "version": "1.0.0-*"
+}
