@@ -55,5 +55,12 @@ namespace Meow.Client.API.Controllers
                 return new NotFoundResult();
             }
         }
+
+        public IActionResult DeleteEvent(Guid id)
+        {
+            _service.DeleteEvent(id);
+
+            return new NoContentResult();
+        }
     }
 }
