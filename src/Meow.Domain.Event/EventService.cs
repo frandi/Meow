@@ -17,30 +17,6 @@ namespace Meow.Domain.Event
             _repo = repo;
         }
 
-        public EventItem CreateEvent(EventItem item)
-        {
-            if (item == null)
-                throw new ArgumentNullException(nameof(item));
-
-            _repo.Add(item);
-            _repo.Save();
-
-            return (EventItem)item.Clone();
-        }
-
-        public void DeleteEvent(Guid id)
-        {
-            if (id.Equals(Guid.Empty))
-                throw new ArgumentNullException(nameof(id));
-
-            var item = GetEvent(id);
-            if(item != null)
-            {
-                _repo.Delete(item);
-                _repo.Save();
-            }
-        }
-
         public EventItem GetEvent(Guid id)
         {
             return _repo.Get(id);
@@ -70,6 +46,16 @@ namespace Meow.Domain.Event
             return _repo.SearchEvents(filter);
         }
 
+        public EventItem CreateEvent(EventItem item)
+        {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
+
+            _repo.Add(item);
+            
+            return (EventItem)item.Clone();
+        }
+        
         public EventItem UpdateEvent(EventItem item)
         {
             if (item == null)
@@ -87,9 +73,20 @@ namespace Meow.Domain.Event
             exisitingItem.EndTime = item.EndTime;
 
             _repo.Update(exisitingItem);
-            _repo.Save();
-
+            
             return (EventItem)exisitingItem.Clone();
+        }
+
+        public void DeleteEvent(Guid id)
+        {
+            if (id.Equals(Guid.Empty))
+                throw new ArgumentNullException(nameof(id));
+
+            var item = GetEvent(id);
+            if (item != null)
+            {
+                _repo.Delete(item);
+            }
         }
     }
 }

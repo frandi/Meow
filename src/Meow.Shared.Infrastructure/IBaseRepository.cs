@@ -27,27 +27,21 @@ namespace Meow.Shared.Infrastructure
         bool Exists(Guid id);
 
         /// <summary>
-        /// Set entity as added. Don't forget to call <em>Save</em> by the end of operation to commit the changes.
+        /// Set entity as added.
         /// </summary>
         /// <param name="entity"></param>
         void Add(TEntity entity);
 
         /// <summary>
-        /// Set entity as updated. Don't forget to call <em>Save</em> by the end of operation to commit the changes.
+        /// Set entity as updated.
         /// </summary>
         /// <param name="entity"></param>
         void Update(TEntity entity);
 
         /// <summary>
-        /// Set entity as deleted. Don't forget to call <em>Save</em> by the end of operation to commit the changes.
+        /// Set entity as deleted.
         /// </summary>
         /// <param name="entity"></param>
         void Delete(TEntity entity);
-
-        /// <summary>
-        /// Commit the operation
-        /// </summary>
-        /// <returns></returns>
-        int Save();
     }
 }

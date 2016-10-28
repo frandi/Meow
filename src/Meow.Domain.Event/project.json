@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "Meow.Shared.Infrastructure": "1.0.0-*"
+    "Meow.Shared.Infrastructure": "1.0.0-*",
+    "Newtonsoft.Json": "9.0.1"
   },
   "frameworks": {
     "net462": {
