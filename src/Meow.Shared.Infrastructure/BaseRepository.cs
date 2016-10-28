@@ -12,7 +12,7 @@ namespace Meow.Shared.Infrastructure
     public abstract class BaseRepository<TEntity> where TEntity : BaseModel
     {
         private MeowContext _db;
-
+        
         public BaseRepository(MeowContext db)
         {
             if (db == null)
@@ -37,7 +37,7 @@ namespace Meow.Shared.Infrastructure
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public TEntity Get(Guid id)
+        public virtual TEntity Get(Guid id)
         {
             var entities = Filter<Guid>(GetAll(), e => e.Id, id);
             return entities.FirstOrDefault();
@@ -55,48 +55,45 @@ namespace Meow.Shared.Infrastructure
         }
 
         /// <summary>
-        /// Set entity as added. Don't forget to call <em>Save</em> by the end of operation to commit the changes.
+        /// Set entity as added.
         /// </summary>
         /// <param name="entity"></param>
-        public void Add(TEntity entity)
+        public virtual void Add(TEntity entity)
         {
             DbEntityEntry dbEntityEntry = GetDbEntityEntrySafely(entity);
             dbEntityEntry.State = EntityState.Added;
 
             entity.Created = DateTime.UtcNow;
+
+            _db.SaveChanges();
         }
 
         /// <summary>
-        /// Set entity as updated. Don't forget to call <em>Save</em> by the end of operation to commit the changes.
+        /// Set entity as updated.
         /// </summary>
         /// <param name="entity"></param>
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             DbEntityEntry dbEntityEntry = GetDbEntityEntrySafely(entity);
             dbEntityEntry.State = EntityState.Modified;
 
             entity.Updated = DateTime.UtcNow;
+
+            _db.SaveChanges();
         }
 
         /// <summary>
-        /// Set entity as deleted. Don't forget to call <em>Save</em> by the end of operation to commit the changes.
+        /// Set entity as deleted.
         /// </summary>
         /// <param name="entity"></param>
-        public void Delete(TEntity entity)
+        public virtual void Delete(TEntity entity)
         {
             DbEntityEntry dbEntityEntry = GetDbEntityEntrySafely(entity);
             dbEntityEntry.State = EntityState.Deleted;
-        }
 
-        /// <summary>
-        /// Commit the operation
-        /// </summary>
-        /// <returns></returns>
-        public int Save()
-        {
-            return _db.SaveChanges();
+            _db.SaveChanges();
         }
-
+        
         #endregion
 
         #region Protected Methods

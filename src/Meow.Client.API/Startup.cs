@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Meow.Shared.DataAccess;
 using Meow.Domain.Event;
+using Meow.Shared.Infrastructure;
 
 namespace Meow.Client.API
 {
@@ -33,7 +34,8 @@ namespace Meow.Client.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddScoped<MeowContext>(_ => new MeowContext(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSingleton(CacheManager.Create());
+            services.AddScoped(_ => new MeowContext(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IEventRepository, EventRepository>();
             services.AddTransient<IEventService, EventService>();
         }
