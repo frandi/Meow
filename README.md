@@ -1,1 +1,2 @@
-MEOW - My Event Organizing World
+## m.EO.w
+*Description:* tbd
