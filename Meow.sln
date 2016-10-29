@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DF04AE55-1D9F-4061-B9E3-6A36D8D8D9F3}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Meow.Domain.Event", "src\Meow.Domain.Event\Meow.Domain.Event.xproj", "{60F72C92-37AE-4C12-AAFD-EA2FA9C76373}"
